@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Management.Instrumentation;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -32,10 +33,10 @@ namespace DefaultNamespace
         private bool _throwUp;
         private bool _throwFront;
         
-        // private bool _ballHit;
-        // private bool _damage;
-        // private bool _death;
-        // private bool _catch;
+        private bool _ballHit;
+        private bool _damage;
+        private bool _death;
+        private bool _catch;
 
         private void Start()
         {
@@ -141,19 +142,34 @@ namespace DefaultNamespace
             _animator.SetBool("Throw Up", _throwUp);
         }
 
+        private void OnCollisionEnter(Collision other)
+        {
+            Debug.Log(other.gameObject.tag);
+            if (other.gameObject.tag == "Enemy")
+            {
+                _damage = true;
+                _animator.SetBool("Damage", _damage);
+            }
+            if (other.gameObject.tag == "Ball" && !_ball)
+            {
+                _ballHit = true;
+                _animator.SetBool("Ball Hit", _ballHit);
+            }
+            
+        }
+
         private void Update()
         {
             PlayerInput();
-            _velocity = new Vector3(0, 0, 0);
             
             if (_jump)
             {
-                _velocity += jumpVelocity * Vector3.up;
+                Debug.Log("Jump" + _velocity.y);
+                _velocity.y = jumpVelocity;
             }
 
             if (!_ground)
             {
-                _velocity += _prevVelocity.y * Vector3.up;
                 _velocity -= gravity * Time.deltaTime * Vector3.up;
                 if (_jumpPress)
                 {
@@ -163,11 +179,14 @@ namespace DefaultNamespace
             
             if (_move)
             {
-                _velocity += speed * _direction * Vector3.right;
+                _velocity.x = speed * _direction;
+            }
+            else
+            {
+                _velocity.x = 0;
             }
             
-            _prevVelocity = _velocity;
-            transform.position += _velocity;
+            transform.position += _velocity * Time.deltaTime;
 
             float ballX = ball.transform.position.x;
             float x = transform.position.x;
@@ -196,17 +215,23 @@ namespace DefaultNamespace
             {
                 y = Mathf.Max(sceneBorders.y, y);
             }
-
-            if (_ball)
-            {
-                ball.transform.position += (ballPlace.transform.position - ball.transform.position) / 0.8f;
-            }
-            
             
             transform.position = new Vector3(
                 x, 
                 y,
                 transform.position.z);
+            
+            if (_ball)
+            {
+                if (Vector3.Magnitude(ball.transform.position - ballPlace.transform.position) > 0.01)
+                {
+                    Debug.Log(Vector3.Magnitude(ball.transform.position - ballPlace.transform.position));
+                }
+                // ball.transform.position += (ballPlace.transform.position - ball.transform.position) / 1f;
+                ball.transform.position = ballPlace.transform.position;
+            }
+            
+            
         }
     }
 }

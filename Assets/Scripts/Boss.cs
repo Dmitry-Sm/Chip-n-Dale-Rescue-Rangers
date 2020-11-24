@@ -10,7 +10,7 @@ public class Boss : MonoBehaviour
     public int lifes;
     public Rect sceneBorders;
     // public EnemySpawner[] enemySpawners;
-    public SpriteRenderer renderer;
+    public SpriteRenderer spriteRenderer;
     public Phase[] phases;
     public int currentPhase = 0;
 
@@ -57,7 +57,7 @@ public class Boss : MonoBehaviour
         {
             spawner.spawned = false;
         }
-        renderer.flipX = _direction == -1;
+        spriteRenderer.flipX = _direction == -1;
         _currentHeight = (++_currentHeight) % height.Length;
         transform.position = new Vector3(
             Mathf.Clamp(transform.position.x, sceneBorders.xMin, sceneBorders.xMax), 

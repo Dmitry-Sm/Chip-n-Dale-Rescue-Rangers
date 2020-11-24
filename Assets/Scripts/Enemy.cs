@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     public int direction;
     public float gravity;
     public Rect sceneBorders;
-    public SpriteRenderer renderer;
+    public SpriteRenderer spriteRenderer;
 
     private Vector3 _velocity;
     private bool _fly = true;
@@ -18,10 +18,9 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         _velocity = new Vector3(Random.value * 0.002f - 0.001f, Random.value * 0.002f);
-        renderer.flipX = direction == -1;
+        spriteRenderer.flipX = direction == -1;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (_fly)

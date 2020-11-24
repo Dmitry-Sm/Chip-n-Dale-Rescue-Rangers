@@ -16,8 +16,8 @@ public class Ball : MonoBehaviour
     public bool ground = true;
 
     private Vector3 _velocity;
-    private bool _throwUp = false;
-    private bool _throwFront = false;
+    public bool _throwUp = false;
+    public bool _throwFront = false;
     private int _direction;
     private int _boundCount = 0;
 
@@ -38,7 +38,7 @@ public class Ball : MonoBehaviour
     {
         if (_throwUp)
         {
-            if (transform.position.y >= sceneBorders.yMin)
+            if (transform.position.y > sceneBorders.yMin)
             {
                 _velocity += gravity * Time.deltaTime * Vector3.down;
                 transform.position += _velocity;
@@ -52,9 +52,8 @@ public class Ball : MonoBehaviour
                 ground = true;
                 _throwUp = false;
             }
-            
         }
-
+        
         if (_throwFront)
         {
             if (_boundCount < 2)
@@ -80,7 +79,5 @@ public class Ball : MonoBehaviour
                 _velocity = Vector3.zero;
             }
         }
-        
-        
     }
 }
