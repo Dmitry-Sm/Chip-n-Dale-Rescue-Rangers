@@ -483,7 +483,7 @@ PrefabInstance:
     - target: {fileID: 3384944948627933554, guid: 317d5ce34f2ef9a46a4fcd7cefb8fc09,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3384944948627933555, guid: 317d5ce34f2ef9a46a4fcd7cefb8fc09,
         type: 3}
@@ -1158,7 +1158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 095650492be5d02458393f25fd84addd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UI: {fileID: 0}
+  active: 1
+  UI: {fileID: 1650261829}
 --- !u!4 &1352284622 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3384944948627933555, guid: 317d5ce34f2ef9a46a4fcd7cefb8fc09,
@@ -1898,7 +1899,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1702106618
 Transform:
   m_ObjectHideFlags: 0
@@ -1978,10 +1979,10 @@ MonoBehaviour:
     - x: 0.3
       direction: 1
       spawned: 0
-  currentPhase: 0
   collider: {fileID: 239595901}
   sprite: {fileID: 969274494}
-  game: {fileID: 0}
+  nextPhase: 0
+  game: {fileID: 1233117959}
 --- !u!1 &1773863501
 GameObject:
   m_ObjectHideFlags: 0

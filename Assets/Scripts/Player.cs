@@ -47,13 +47,13 @@ public class Player : MonoBehaviour
     private bool _death;
     private bool _catch;
     private int _lifes = 3;
-    private bool _active = true;
 
     private void Start()
     {
         _animator = sprite.GetComponent<Animator>();
         _renderer = sprite.GetComponent<SpriteRenderer>();
         _controlLockProgress.duration = 1f;
+        _controlLockProgress.progress = 1f;
         _ballCathcTime.duration = 0.5f;
         UI.LifeCounter.SetHeartsNum(_lifes);
     }
@@ -111,7 +111,6 @@ public class Player : MonoBehaviour
         UI.LifeCounter.SetHeartsNum(Mathf.Max(0, --_lifes));
         if (_lifes <= 0)
         {
-            _active = false;
             game.Loose();
         }
     }
@@ -230,12 +229,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (!_active)
+        if (!game.active)
         {
             return;
         }
-        _controlLockProgress.Update();
-        _ballCathcTime.Update();
         
         CheckGround();
         PlayerInput();

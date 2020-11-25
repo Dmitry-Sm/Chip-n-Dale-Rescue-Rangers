@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Progress
 {
-    public float progress = 1f;
+    public float progress = 0f;
     public float duration;
     private float startTime;
     private float currentTime;
@@ -40,8 +40,16 @@ public class Progress
 
     public bool IsComplete()
     {
-        currentTime = Time.time;
-        progress = (currentTime - startTime) / duration;
+        if (running)
+        {
+            currentTime = Time.time;
+            progress = (currentTime - startTime) / duration;
+            if (progress >= 1f)
+            {
+                running = false;
+            }
+        }
+
         return progress >= 1f;
     }
 }

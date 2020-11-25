@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
+    public bool active = true;
     public UI UI;
     public Progress endScreenDelay = new Progress();
 
@@ -14,11 +15,15 @@ public class Game : MonoBehaviour
     public void Win()
     {
         endScreenDelay.Start();
+        active = false;
+        _win = true;
     }
 
     public void Loose()
     {
         endScreenDelay.Start();
+        active = false;
+        _loose = true;
     }
     
     
@@ -29,17 +34,18 @@ public class Game : MonoBehaviour
 
     private void Update()
     {
-        // if (endScreenDelay.IsComplete())
-        // {
-        //     Debug.Log("End screen");
-        //     if (_win)
-        //     {
-        //         UI.EndScreen.gameObject.SetActive(true);
-        //     }
-        //     if (_loose)
-        //     {
-        //         UI.EndScreen.gameObject.SetActive(true);
-        //     }
-        // }
+        if (endScreenDelay.IsComplete())
+        {
+            endScreenDelay.progress = 0;
+            Debug.Log("End screen");
+            if (_win)
+            {
+                UI.EndScreen.gameObject.SetActive(true);
+            }
+            if (_loose)
+            {
+                UI.EndScreen.gameObject.SetActive(true);
+            }
+        }
     }
 }

@@ -12,10 +12,11 @@ public class Boss : MonoBehaviour
     public Ball ball;
     // public EnemySpawner[] enemySpawners;
     public Phase[] phases;
-    public int currentPhase = 0;
     public new CustomCollider collider;
     public SpriteRenderer sprite;
+    public int nextPhase;
 
+    private int _currentPhase = 0;
     private int _currentHeight = 0;
     private int _direction = 1;
     private Animator _animator;
@@ -24,9 +25,11 @@ public class Boss : MonoBehaviour
     
     void Start()
     {
+        nextPhase = _currentPhase;
         _damageDelay.duration = 0.5f;
+        _damageDelay.progress = 1f;
         _animator = sprite.GetComponent<Animator>();
-        foreach (EnemySpawner spawner in phases[currentPhase].EnemySpawners)
+        foreach (EnemySpawner spawner in phases[_currentPhase].EnemySpawners)
         {
             if (!spawner.spawned && (_direction == 1 && transform.position.x >= spawner.x ||
                                      _direction == -1 && transform.position.x <= spawner.x))
@@ -49,6 +52,20 @@ public class Boss : MonoBehaviour
     private void SetDamage()
     {
         lifes--;
+        if (lifes <= 0)
+        {
+            game.Win();
+        }
+
+        if (lifes == 4)
+        {
+            nextPhase = 1;
+        }
+
+        if (lifes == 2)
+        {
+            nextPhase = 2;
+        }
         _damageDelay.Start();
         _animator.SetBool("Damage", true);
     }
@@ -77,7 +94,7 @@ public class Boss : MonoBehaviour
 
     private void CheckSpawners()
     {
-        foreach (EnemySpawner spawner in phases[currentPhase].EnemySpawners)
+        foreach (EnemySpawner spawner in phases[_currentPhase].EnemySpawners)
         {
             if (!spawner.spawned && (_direction == 1 && transform.position.x >= spawner.x ||
                                      _direction == -1 && transform.position.x <= spawner.x))
@@ -90,7 +107,8 @@ public class Boss : MonoBehaviour
     private void SwapDirection()
     {
         _direction *= -1;
-        foreach (EnemySpawner spawner in phases[currentPhase].EnemySpawners)
+        _currentPhase = nextPhase;
+        foreach (EnemySpawner spawner in phases[_currentPhase].EnemySpawners)
         {
             spawner.spawned = false;
         }
@@ -104,6 +122,10 @@ public class Boss : MonoBehaviour
     
     void Update()
     {
+        if (!game.active)
+        {
+            return;
+        }
         _damageDelay.Update();
         SetDefailtAnimation();
         CheckCollisions();
