@@ -10,10 +10,12 @@
           <e p="Ball.cs" t="Include" />
           <e p="Boss.cs" t="Include" />
           <e p="CameraSize.cs" t="Include" />
+          <e p="CustomCollider.cs" t="Include" />
           <e p="Enemy.cs" t="Include" />
           <e p="EnemySpawner.cs" t="Include" />
           <e p="Phase.cs" t="Include" />
           <e p="Player.cs" t="Include" />
+          <e p="Progress.cs" t="Include" />
         </e>
       </e>
       <e p="Chip`n` Dale Rescue Rangers.sln" t="IncludeFlat" />

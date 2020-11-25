@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
@@ -10,6 +7,7 @@ public class Enemy : MonoBehaviour
     public int direction;
     public float gravity;
     public Rect sceneBorders;
+    public CustomCollider collider;
     public SpriteRenderer spriteRenderer;
 
     private Vector3 _velocity;
@@ -19,6 +17,11 @@ public class Enemy : MonoBehaviour
     {
         _velocity = new Vector3(Random.value * 0.002f - 0.001f, Random.value * 0.002f);
         spriteRenderer.flipX = direction == -1;
+    }
+
+    private Rect GetRect()
+    {
+        return Rect.zero;
     }
 
     void Update()

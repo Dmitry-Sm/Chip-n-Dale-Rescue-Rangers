@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,15 +12,23 @@ public class Ball : MonoBehaviour
     public float gravity;
     public float throwSpeed;
     public float flySpeed;
-
-    // [HideInInspector]
+    [HideInInspector]
     public bool ground = true;
+    public CustomCollider collider;
+    public CustomCollider catchCollider;
+    // [HideInInspector]
+    // public Rect collider;
 
     private Vector3 _velocity;
-    public bool _throwUp = false;
-    public bool _throwFront = false;
+    private bool _throwUp = false;
+    private bool _throwFront = false;
     private int _direction;
     private int _boundCount = 0;
+
+    private void Start()
+    {
+        
+    }
 
     public void ThrowUp()
     {

@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ecc5d36-6c85-4279-a8c6-67ff617f36c3" name="Default Changelist" comment="enemy spawner">
+    <list default="true" id="5ecc5d36-6c85-4279-a8c6-67ff617f36c3" name="Default Changelist" comment="player animation speed fix">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CustomCollider.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CustomCollider.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sprites/Square.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sprites/Square.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chip`n` Dale Rescue Rangers/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chip`n` Dale Rescue Rangers/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chip`n` Dale Rescue Rangers/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chip`n` Dale Rescue Rangers/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plan.md" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plan.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Player/Player.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Player/Player.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemy.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ball.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ball.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boss.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boss.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,9 +28,11 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Ball.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemy.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/EnemySpawner.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CustomCollider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Readme.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Boss.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Progress.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraSize.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Phase.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -37,20 +43,27 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/CameraSize.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EnemySpawner.cs" />
         <option value="$PROJECT_DIR$/Assets/Plan.md" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Collider.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/CustomCollider.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Boss.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Progress.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Ball.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
       </list>
     </option>
   </component>
   <component name="ProjectId" id="1kYbHju8L9qiSuIueUyrgWAd046" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.29710144" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.25442833" />
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -85,7 +98,8 @@
       <workItem from="1606074888701" duration="2934000" />
       <workItem from="1606079899035" duration="2489000" />
       <workItem from="1606136284625" duration="28365000" />
-      <workItem from="1606235875952" duration="4851000" />
+      <workItem from="1606235875952" duration="23614000" />
+      <workItem from="1606302803188" duration="327000" />
     </task>
     <task id="LOCAL-00001" summary="enemy spawner">
       <created>1606236123161</created>
@@ -94,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606236123161</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="player animation speed fix">
+      <created>1606240967666</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1606240967666</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
@@ -102,12 +123,77 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="enemy spawner" />
-    <option name="LAST_COMMIT_MESSAGE" value="enemy spawner" />
+    <MESSAGE value="player animation speed fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="player animation speed fix" />
   </component>
   <component name="WindowStateProjectService">
     <state x="245" y="277" width="1021" height="1240" key="DiffContextDialog" timestamp="1606184031307">
       <screen x="0" y="0" width="2451" height="1440" />
     </state>
     <state x="245" y="277" width="1021" height="1240" key="DiffContextDialog/0.0.2451.1440@0.0.2451.1440" timestamp="1606184031307" />
+    <state width="1273" height="325" key="GridCell.Tab.0.bottom" timestamp="1606267754966">
+      <screen x="0" y="0" width="2451" height="1440" />
+    </state>
+    <state width="1273" height="325" key="GridCell.Tab.0.bottom/0.0.2451.1440@0.0.2451.1440" timestamp="1606267754966" />
+    <state width="1273" height="325" key="GridCell.Tab.0.center" timestamp="1606267754965">
+      <screen x="0" y="0" width="2451" height="1440" />
+    </state>
+    <state width="1273" height="325" key="GridCell.Tab.0.center/0.0.2451.1440@0.0.2451.1440" timestamp="1606267754965" />
+    <state width="1273" height="325" key="GridCell.Tab.0.left" timestamp="1606267754965">
+      <screen x="0" y="0" width="2451" height="1440" />
+    </state>
+    <state width="1273" height="325" key="GridCell.Tab.0.left/0.0.2451.1440@0.0.2451.1440" timestamp="1606267754965" />
+    <state width="1273" height="325" key="GridCell.Tab.0.right" timestamp="1606267754966">
+      <screen x="0" y="0" width="2451" height="1440" />
+    </state>
+    <state width="1273" height="325" key="GridCell.Tab.0.right/0.0.2451.1440@0.0.2451.1440" timestamp="1606267754966" />
+    <state width="1273" height="325" key="GridCell.Tab.1.bottom" timestamp="1606267754966">
+      <screen x="0" y="0" width="2451" height="1440" />
+    </state>
+    <state width="1273" height="325" key="GridCell.Tab.1.bottom/0.0.2451.1440@0.0.2451.1440" timestamp="1606267754966" />
+    <state width="1273" height="325" key="GridCell.Tab.1.center" timestamp="1606267754966">
+      <screen x="0" y="0" width="2451" height="1440" />
+    </state>
+    <state width="1273" height="325" key="GridCell.Tab.1.center/0.0.2451.1440@0.0.2451.1440" timestamp="1606267754966" />
+    <state width="1273" height="325" key="GridCell.Tab.1.left" timestamp="1606267754966">
+      <screen x="0" y="0" width="2451" height="1440" />
+    </state>
+    <state width="1273" height="325" key="GridCell.Tab.1.left/0.0.2451.1440@0.0.2451.1440" timestamp="1606267754966" />
+    <state width="1273" height="325" key="GridCell.Tab.1.right" timestamp="1606267754966">
+      <screen x="0" y="0" width="2451" height="1440" />
+    </state>
+    <state width="1273" height="325" key="GridCell.Tab.1.right/0.0.2451.1440@0.0.2451.1440" timestamp="1606267754966" />
+    <state width="1273" height="325" key="GridCell.Tab.2.bottom" timestamp="1606267754966">
+      <screen x="0" y="0" width="2451" height="1440" />
+    </state>
+    <state width="1273" height="325" key="GridCell.Tab.2.bottom/0.0.2451.1440@0.0.2451.1440" timestamp="1606267754966" />
+    <state width="1273" height="325" key="GridCell.Tab.2.center" timestamp="1606267754966">
+      <screen x="0" y="0" width="2451" height="1440" />
+    </state>
+    <state width="1273" height="325" key="GridCell.Tab.2.center/0.0.2451.1440@0.0.2451.1440" timestamp="1606267754966" />
+    <state width="1273" height="325" key="GridCell.Tab.2.left" timestamp="1606267754966">
+      <screen x="0" y="0" width="2451" height="1440" />
+    </state>
+    <state width="1273" height="325" key="GridCell.Tab.2.left/0.0.2451.1440@0.0.2451.1440" timestamp="1606267754966" />
+    <state width="1273" height="325" key="GridCell.Tab.2.right" timestamp="1606267754966">
+      <screen x="0" y="0" width="2451" height="1440" />
+    </state>
+    <state width="1273" height="325" key="GridCell.Tab.2.right/0.0.2451.1440@0.0.2451.1440" timestamp="1606267754966" />
+    <state width="1273" height="325" key="GridCell.Tab.3.bottom" timestamp="1606267754966">
+      <screen x="0" y="0" width="2451" height="1440" />
+    </state>
+    <state width="1273" height="325" key="GridCell.Tab.3.bottom/0.0.2451.1440@0.0.2451.1440" timestamp="1606267754966" />
+    <state width="1273" height="325" key="GridCell.Tab.3.center" timestamp="1606267754966">
+      <screen x="0" y="0" width="2451" height="1440" />
+    </state>
+    <state width="1273" height="325" key="GridCell.Tab.3.center/0.0.2451.1440@0.0.2451.1440" timestamp="1606267754966" />
+    <state width="1273" height="325" key="GridCell.Tab.3.left" timestamp="1606267754966">
+      <screen x="0" y="0" width="2451" height="1440" />
+    </state>
+    <state width="1273" height="325" key="GridCell.Tab.3.left/0.0.2451.1440@0.0.2451.1440" timestamp="1606267754966" />
+    <state width="1273" height="325" key="GridCell.Tab.3.right" timestamp="1606267754966">
+      <screen x="0" y="0" width="2451" height="1440" />
+    </state>
+    <state width="1273" height="325" key="GridCell.Tab.3.right/0.0.2451.1440@0.0.2451.1440" timestamp="1606267754966" />
   </component>
 </project>
