@@ -1220,7 +1220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1702106618
 Transform:
   m_ObjectHideFlags: 0
@@ -1265,10 +1265,10 @@ MonoBehaviour:
   spriteRenderer: {fileID: 969274494}
   phases:
   - EnemySpawners:
-    - x: -0.3
+    - x: -0.2
       direction: 1
       spawned: 0
-    - x: 0.3
+    - x: 0.2
       direction: -1
       spawned: 0
   - EnemySpawners:
@@ -1408,12 +1408,13 @@ MonoBehaviour:
     y: 0
     width: 0.9
     height: 1
-  gravity: 0.1
-  throwSpeed: 0.03
+  gravity: 4
+  throwSpeed: 1
   flySpeed: 0.8
   ground: 1
   collider: {fileID: 619936173}
   catchCollider: {fileID: 1352284623}
+  throwFrontOffset: {x: 0.07, y: -0.02, z: 0}
 --- !u!4 &1905644174 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3384944948627933555, guid: 317d5ce34f2ef9a46a4fcd7cefb8fc09,

@@ -13,7 +13,7 @@ public class Boss : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Phase[] phases;
     public int currentPhase = 0;
-    public CustomCollider collider;
+    public new CustomCollider collider;
 
     private int _currentHeight = 0;
     private int _direction = 1;

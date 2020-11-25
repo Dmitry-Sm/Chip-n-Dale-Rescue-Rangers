@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public Vector2 damageVelocity;
     // public Collider2D collider;
 
-    public CustomCollider collider;
+    public new CustomCollider collider;
     // public Rect collider;
     public Ball ball;
     public GameObject ballPlace;
@@ -75,10 +75,9 @@ public class Player : MonoBehaviour
 
     private void CathcBall()
     {
-        _ball = true;
-        ball.ground = false;
-        _animator.SetBool("Catch", true);
-
+        // _ball = true;
+        // ball.ground = false;
+        // _animator.SetBool("Catch", true);
     }
 
     private void SetBallHit()
@@ -86,6 +85,8 @@ public class Player : MonoBehaviour
         _ballHit = true;
         _controlLockProgress.Start();
         _animator.SetBool("Ball Hit", _ballHit);
+        Debug.Log(_animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);
+        Debug.Log(_animator.GetCurrentAnimatorClipInfo(1)[0].clip.length);
     }
     
     private void SetDamage()
@@ -132,8 +133,9 @@ public class Player : MonoBehaviour
         _throwUp = false;
         _throwFront = false;
         _catch = false;
+        _damage = false;
+        _ballHit = false;
 
-        
         if (_controlLockProgress.IsComplete())
         {
             if (!_sit && Input.GetKeyDown(KeyCode.LeftControl))
@@ -183,35 +185,27 @@ public class Player : MonoBehaviour
                 }
                 if (Input.GetKey(KeyCode.A))
                 {
-                    _renderer.flipX = true;
                     _direction = -1;
                 }
                 else
                 {
                     _direction = 1;
-                    _renderer.flipX = false;
                 }
+            }
+            if (!_ground && Input.GetKey(KeyCode.Space))
+            {
+                _jumpPress = true;
             }
         }
 
-        if (!_ground && Input.GetKey(KeyCode.Space))
-        {
-            _jumpPress = true;
-        }
-
+        _animator.SetBool("Ball Hit", _ballHit);
+        _animator.SetBool("Damage", _damage);
         _animator.SetBool("Run", _run);
         _animator.SetBool("Sit", _sit);
         _animator.SetBool("Ball", _ball);
         _animator.SetBool("Ground", _ground);
         _animator.SetBool("Throw Front", _throwFront);
         _animator.SetBool("Throw Up", _throwUp);
-        
-        _animator.SetBool("Damage", _damage);
-        _animator.SetBool("Ball Hit", _ballHit);
-        
-        _ballHit = false;
-        _damage = false;
-        _death = false;
     }
 
     private void Update()
@@ -227,6 +221,8 @@ public class Player : MonoBehaviour
         {
             Debug.Log(_controlLockProgress.progress);
         }
+
+        _renderer.flipX = _direction == -1;
         _controlLockProgress.Update();
         
         if (_jump)

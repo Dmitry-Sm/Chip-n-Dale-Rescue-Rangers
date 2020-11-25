@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public int direction;
     public float gravity;
     public Rect sceneBorders;
-    public CustomCollider collider;
+    public new CustomCollider collider;
     public SpriteRenderer spriteRenderer;
 
     private Vector3 _velocity;

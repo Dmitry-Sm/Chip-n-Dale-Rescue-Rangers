@@ -14,8 +14,10 @@ public class Ball : MonoBehaviour
     public float flySpeed;
     [HideInInspector]
     public bool ground = true;
-    public CustomCollider collider;
+    public new CustomCollider collider;
     public CustomCollider catchCollider;
+
+    public Vector3 throwFrontOffset;
     // [HideInInspector]
     // public Rect collider;
 
@@ -25,14 +27,10 @@ public class Ball : MonoBehaviour
     private int _direction;
     private int _boundCount = 0;
 
-    private void Start()
-    {
-        
-    }
-
     public void ThrowUp()
     {
         _throwUp = true;
+        _boundCount = 0;
         _velocity = throwSpeed * Vector3.up;
     }
 
@@ -41,7 +39,19 @@ public class Ball : MonoBehaviour
         _throwFront = true;
         _direction = direction;
         _boundCount = 0;
+        throwFrontOffset.x = Mathf.Abs(throwFrontOffset.x) * direction;
+        transform.position += throwFrontOffset;
     }
+
+    private void ClampPosition()
+    {
+       
+        transform.position = new Vector3(
+            Mathf.Clamp(transform.position.x, sceneBorders.xMin, sceneBorders.xMax),
+            Mathf.Max(sceneBorders.yMin, transform.position.y),
+            transform.position.z); 
+    }
+    
     
     void Update()
     {
@@ -50,16 +60,21 @@ public class Ball : MonoBehaviour
             if (transform.position.y > sceneBorders.yMin)
             {
                 _velocity += gravity * Time.deltaTime * Vector3.down;
-                transform.position += _velocity;
+                transform.position += _velocity * Time.deltaTime;
             }
             else
             {
-                transform.position = new Vector3(
-                    transform.position.x,
-                    Mathf.Max(sceneBorders.yMin, transform.position.y),
-                    transform.position.z);
-                ground = true;
-                _throwUp = false;
+                if (_boundCount++ < 2)
+                {
+                    _velocity.y *= -0.3f;
+                    ground = true;
+                    transform.position += _velocity * Time.deltaTime;
+                }
+                else
+                {
+                    ground = true;
+                    _throwUp = false;
+                }
             }
         }
         
@@ -67,18 +82,12 @@ public class Ball : MonoBehaviour
         {
             if (_boundCount < 2)
             {
-                if (transform.position.x >= sceneBorders.xMin && transform.position.x <= sceneBorders.xMax)
+                transform.position += _direction * flySpeed * Time.deltaTime * Vector3.right;
+
+                if (transform.position.x <= sceneBorders.xMin || sceneBorders.xMax <= transform.position.x)
                 {
-                    transform.position += _direction * flySpeed * Time.deltaTime * Vector3.right;
-                }
-                else
-                {
-                    transform.position = new Vector3(
-                        Mathf.Clamp(transform.position.x, sceneBorders.xMin, sceneBorders.xMax),
-                        transform.position.y,
-                        transform.position.z);
-                    _direction *= -1;
                     _boundCount++;
+                    _direction *= -1;
                 }
             }
             else
@@ -88,5 +97,6 @@ public class Ball : MonoBehaviour
                 _velocity = Vector3.zero;
             }
         }
+        ClampPosition();
     }
 }
