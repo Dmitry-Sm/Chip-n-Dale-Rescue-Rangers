@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     // public Rect collider;
     public Ball ball;
     public GameObject ballPlace;
+    public Boss boss;
+    public UI UI;
 
     private Progress _controlLockProgress = new Progress();
     private SpriteRenderer _renderer;
@@ -42,12 +44,15 @@ public class Player : MonoBehaviour
     private bool _damage;
     private bool _death;
     private bool _catch;
+    private int _lifes = 3;
 
     private void Start()
     {
         _animator = sprite.GetComponent<Animator>();
         _renderer = sprite.GetComponent<SpriteRenderer>();
         _controlLockProgress.duration = 1f;
+        
+        UI.LifeCounter.SetHeartsNum(_lifes);
     }
 
     private void CheckCollisions()
@@ -61,6 +66,10 @@ public class Player : MonoBehaviour
             {
                 SetDamage();
             }
+        }
+        if (RectsCollided(playerRect, boss.collider.GetRect()))
+        {
+            SetDamage();
         }
         if (!ball.ground && !_ball && RectsCollided(playerRect, ball.collider.GetRect()))
         {
@@ -96,6 +105,8 @@ public class Player : MonoBehaviour
         _animator.SetBool("Damage", _damage);
         _velocity.x = -damageVelocity.x * _direction;
         _velocity.y = damageVelocity.y;
+        
+        UI.LifeCounter.SetHeartsNum(Mathf.Max(0, --_lifes));
     }
 
     private bool RectsCollided(Rect rect1, Rect rect2)
@@ -219,7 +230,6 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log(_controlLockProgress.progress);
         }
 
         _renderer.flipX = _direction == -1;
