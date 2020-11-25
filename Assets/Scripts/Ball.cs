@@ -12,14 +12,14 @@ public class Ball : MonoBehaviour
     public float gravity;
     public float throwSpeed;
     public float flySpeed;
-    [HideInInspector]
-    public bool ground = true;
     public new CustomCollider collider;
     public CustomCollider catchCollider;
-
     public Vector3 throwFrontOffset;
-    // [HideInInspector]
-    // public Rect collider;
+
+    [HideInInspector]
+    public bool fly = false;
+    [HideInInspector]
+    public bool ground = true;
 
     private Vector3 _velocity;
     private bool _throwUp = false;
@@ -30,6 +30,7 @@ public class Ball : MonoBehaviour
     public void ThrowUp()
     {
         _throwUp = true;
+        fly = true;
         _boundCount = 0;
         _velocity = throwSpeed * Vector3.up;
     }
@@ -37,22 +38,28 @@ public class Ball : MonoBehaviour
     public void ThrowFront(int direction)
     {
         _throwFront = true;
+        fly = true;
         _direction = direction;
         _boundCount = 0;
         throwFrontOffset.x = Mathf.Abs(throwFrontOffset.x) * direction;
         transform.position += throwFrontOffset;
     }
 
+    public void Grab()
+    {
+        ground = false;
+        _throwFront = false;
+        _throwUp = false;
+    }
+
     private void ClampPosition()
     {
-       
         transform.position = new Vector3(
             Mathf.Clamp(transform.position.x, sceneBorders.xMin, sceneBorders.xMax),
             Mathf.Max(sceneBorders.yMin, transform.position.y),
             transform.position.z); 
     }
-    
-    
+
     void Update()
     {
         if (_throwUp)
@@ -67,12 +74,14 @@ public class Ball : MonoBehaviour
                 if (_boundCount++ < 2)
                 {
                     _velocity.y *= -0.3f;
-                    ground = true;
-                    transform.position += _velocity * Time.deltaTime;
+                    // ground = true;
+                    fly = false;
+                    transform.position += Math.Min(flySpeed, _velocity.y) * Time.deltaTime * Vector3.up;
                 }
                 else
                 {
                     ground = true;
+                    fly = false;
                     _throwUp = false;
                 }
             }

@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public UI UI;
 
     private Progress _controlLockProgress = new Progress();
+    private Progress _ballCathcTime = new Progress();
     private SpriteRenderer _renderer;
     private Animator _animator;
     private Vector3 _velocity;
@@ -51,7 +52,7 @@ public class Player : MonoBehaviour
         _animator = sprite.GetComponent<Animator>();
         _renderer = sprite.GetComponent<SpriteRenderer>();
         _controlLockProgress.duration = 1f;
-        
+        _ballCathcTime.duration = 0.5f;
         UI.LifeCounter.SetHeartsNum(_lifes);
     }
 
@@ -67,26 +68,27 @@ public class Player : MonoBehaviour
                 SetDamage();
             }
         }
-        if (RectsCollided(playerRect, boss.collider.GetRect()))
+        if (RectsCollided(playerRect, boss.collider.GetRect()) && boss.isActiveAndEnabled)
         {
             SetDamage();
         }
-        if (!ball.ground && !_ball && RectsCollided(playerRect, ball.collider.GetRect()))
-        {
-            SetBallHit();
-        }
-        if (!ball.ground && Input.GetKeyDown(KeyCode.LeftControl) && 
+        if (ball.fly && Input.GetKeyDown(KeyCode.LeftControl) && 
+            _ballCathcTime.IsComplete() &&
             RectsCollided(playerRect, ball.catchCollider.GetRect()))
         {
             CathcBall();
+        }
+        if (ball.fly && !_ball && RectsCollided(playerRect, ball.collider.GetRect()))
+        {
+            SetBallHit();
         }
     }
 
     private void CathcBall()
     {
-        // _ball = true;
-        // ball.ground = false;
-        // _animator.SetBool("Catch", true);
+        _ball = true;
+        ball.Grab();
+        _animator.SetBool("Catch", true);
     }
 
     private void SetBallHit()
@@ -94,8 +96,6 @@ public class Player : MonoBehaviour
         _ballHit = true;
         _controlLockProgress.Start();
         _animator.SetBool("Ball Hit", _ballHit);
-        Debug.Log(_animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);
-        Debug.Log(_animator.GetCurrentAnimatorClipInfo(1)[0].clip.length);
     }
     
     private void SetDamage()
@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
         float ballX = ball.transform.position.x;
         float x = transform.position.x;
 
-        if (ball.ground && Mathf.Abs(ballX - x) < ball.topWidth && _velocity.y <= 0)
+        if (!ball.fly && Mathf.Abs(ballX - x) < ball.topWidth && _velocity.y <= 0)
         {
             _ground = transform.position.y <= sceneBorders.y + ball.width;
             _onBall = _ground;
@@ -154,6 +154,7 @@ public class Player : MonoBehaviour
                 if (_ball)
                 {
                     _ball = false;
+                    _ballCathcTime.Start();
                     if (Input.GetKey(KeyCode.W))
                     {
                         _throwUp = true;
@@ -169,7 +170,7 @@ public class Player : MonoBehaviour
                     float x = transform.position.x;
                     if (ball.ground && Mathf.Abs(ballX - x) - ball.width < 0.01f)
                     {
-                        ball.ground = false;
+                        ball.Grab();
                         _ball = true;
                     }
                 }
@@ -211,6 +212,7 @@ public class Player : MonoBehaviour
 
         _animator.SetBool("Ball Hit", _ballHit);
         _animator.SetBool("Damage", _damage);
+        _animator.SetBool("Catch", _catch);
         _animator.SetBool("Run", _run);
         _animator.SetBool("Sit", _sit);
         _animator.SetBool("Ball", _ball);
@@ -221,6 +223,9 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        _controlLockProgress.Update();
+        _ballCathcTime.Update();
+        
         CheckGround();
         PlayerInput();
         if (_controlLockProgress.IsComplete())
@@ -233,8 +238,6 @@ public class Player : MonoBehaviour
         }
 
         _renderer.flipX = _direction == -1;
-        _controlLockProgress.Update();
-        
         if (_jump)
         {
             _velocity.y = jumpVelocity;
@@ -301,7 +304,7 @@ public class Player : MonoBehaviour
             x = Mathf.Clamp(transform.position.x, sceneBorders.xMin, sceneBorders.xMax);
         }
         
-        if (ball.ground && Mathf.Abs(ballX - x) < ball.topWidth)
+        if (!_ball && !ball.fly && Mathf.Abs(ballX - x) < ball.topWidth)
         {
             y = Mathf.Max(sceneBorders.y + ball.width, y);
         }

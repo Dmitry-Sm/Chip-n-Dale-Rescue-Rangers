@@ -17,7 +17,7 @@ public class Progress
     public void Start()
     {
         running = true;
-        progress = 1f;
+        progress = 0f;
         startTime = Time.time;
     }
     public void Stop()

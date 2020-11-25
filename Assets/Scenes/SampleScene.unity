@@ -296,6 +296,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatchCollider
       objectReference: {fileID: 0}
+    - target: {fileID: 3384944948627933554, guid: 317d5ce34f2ef9a46a4fcd7cefb8fc09,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3384944948627933555, guid: 317d5ce34f2ef9a46a4fcd7cefb8fc09,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -359,7 +364,7 @@ PrefabInstance:
     - target: {fileID: 3384944948627933555, guid: 317d5ce34f2ef9a46a4fcd7cefb8fc09,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.15
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 317d5ce34f2ef9a46a4fcd7cefb8fc09, type: 3}
@@ -1616,7 +1621,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1702106618
 Transform:
   m_ObjectHideFlags: 0
@@ -1658,7 +1663,7 @@ MonoBehaviour:
     y: 0
     width: 2
     height: 1
-  spriteRenderer: {fileID: 969274494}
+  ball: {fileID: 1808318196}
   phases:
   - EnemySpawners:
     - x: -0.2
@@ -1698,6 +1703,7 @@ MonoBehaviour:
       spawned: 0
   currentPhase: 0
   collider: {fileID: 239595901}
+  sprite: {fileID: 969274494}
 --- !u!1 &1773863501
 GameObject:
   m_ObjectHideFlags: 0
@@ -1881,10 +1887,11 @@ MonoBehaviour:
   gravity: 4
   throwSpeed: 1.8
   flySpeed: 0.8
-  ground: 1
   collider: {fileID: 619936173}
   catchCollider: {fileID: 1352284623}
   throwFrontOffset: {x: 0.07, y: -0.02, z: 0}
+  fly: 0
+  ground: 1
 --- !u!4 &1905644174 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3384944948627933555, guid: 317d5ce34f2ef9a46a4fcd7cefb8fc09,
