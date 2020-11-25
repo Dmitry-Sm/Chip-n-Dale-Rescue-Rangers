@@ -20,6 +20,7 @@ public class Boss : MonoBehaviour
     private int _direction = 1;
     private Animator _animator;
     private Progress _damageDelay = new Progress();
+    public Game game;
     
     void Start()
     {

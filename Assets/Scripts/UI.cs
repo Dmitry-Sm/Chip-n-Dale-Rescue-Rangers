@@ -6,9 +6,5 @@ public class UI : MonoBehaviour
 {
 
     public LifeCounter LifeCounter;
-
-    void Start()
-    {
-        
-    }
+    public EndScreen EndScreen;
 }

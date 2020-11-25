@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     public GameObject ballPlace;
     public Boss boss;
     public UI UI;
+    public Game game;
 
     private Progress _controlLockProgress = new Progress();
     private Progress _ballCathcTime = new Progress();
@@ -46,6 +47,7 @@ public class Player : MonoBehaviour
     private bool _death;
     private bool _catch;
     private int _lifes = 3;
+    private bool _active = true;
 
     private void Start()
     {
@@ -107,6 +109,11 @@ public class Player : MonoBehaviour
         _velocity.y = damageVelocity.y;
         
         UI.LifeCounter.SetHeartsNum(Mathf.Max(0, --_lifes));
+        if (_lifes <= 0)
+        {
+            _active = false;
+            game.Loose();
+        }
     }
 
     private bool RectsCollided(Rect rect1, Rect rect2)
@@ -223,6 +230,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (!_active)
+        {
+            return;
+        }
         _controlLockProgress.Update();
         _ballCathcTime.Update();
         

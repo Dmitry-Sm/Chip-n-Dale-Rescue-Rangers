@@ -10,18 +10,28 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecc5d36-6c85-4279-a8c6-67ff617f36c3" name="Default Changelist" comment="UI">
-      <change afterPath="$PROJECT_DIR$/Assets/Animations/Boss/Blink.anim" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Animations/Boss/Blink.anim.meta" afterDir="false" />
+    <list default="true" id="5ecc5d36-6c85-4279-a8c6-67ff617f36c3" name="Default Changelist" comment="ball catch">
+      <change afterPath="$PROJECT_DIR$/Assets/Animations/UI.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animations/UI/Active.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animations/UI/Active.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animations/UI/Image.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animations/UI/Image.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fonts.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fonts/Pixeboy-z8XGD.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fonts/Pixeboy-z8XGD.ttf.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/EndScreen.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/EndScreen.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Game.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Game.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chip`n` Dale Rescue Rangers/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chip`n` Dale Rescue Rangers/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chip`n` Dale Rescue Rangers/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chip`n` Dale Rescue Rangers/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Boss/Boss.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Boss/Boss.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Player/Blink.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Player/Blink.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Player/Player.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Player/Player.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemy.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ball.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ball.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boss.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boss.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CameraSize.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CameraSize.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Progress.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Progress.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +49,8 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Boss.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Progress.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/EndScreen.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Game.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Phase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Ball.cs" root0="FORCE_HIGHLIGHTING" />
@@ -52,18 +64,20 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/Camera.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/CameraSize.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EnemySpawner.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Collider.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CustomCollider.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" />
         <option value="$PROJECT_DIR$/Assets/Plan.md" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UI.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LifeCounter.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Boss.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Ball.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/CameraSize.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/EndScreen.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Boss.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Progress.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Game.cs" />
       </list>
     </option>
   </component>
@@ -115,7 +129,7 @@
       <workItem from="1606136284625" duration="28365000" />
       <workItem from="1606235875952" duration="23614000" />
       <workItem from="1606302803188" duration="5856000" />
-      <workItem from="1606313759389" duration="11179000" />
+      <workItem from="1606313759389" duration="15661000" />
     </task>
     <task id="LOCAL-00001" summary="enemy spawner">
       <created>1606236123161</created>
@@ -152,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606319800350</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="ball catch">
+      <created>1606331476748</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1606331476748</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
@@ -177,7 +198,8 @@
     <MESSAGE value="colliders" />
     <MESSAGE value="ball bounce" />
     <MESSAGE value="UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="UI" />
+    <MESSAGE value="ball catch" />
+    <option name="LAST_COMMIT_MESSAGE" value="ball catch" />
   </component>
   <component name="WindowStateProjectService">
     <state x="245" y="277" width="1021" height="1240" key="DiffContextDialog" timestamp="1606184031307">

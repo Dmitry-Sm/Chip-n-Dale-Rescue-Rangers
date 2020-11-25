@@ -29,8 +29,6 @@ public class Progress
     {
         if (!running)
             return;
-        currentTime = Time.time;
-        progress = (currentTime - startTime) / duration;
         OnUpdateEvent?.Invoke();
 
         if (IsComplete())
@@ -42,6 +40,8 @@ public class Progress
 
     public bool IsComplete()
     {
+        currentTime = Time.time;
+        progress = (currentTime - startTime) / duration;
         return progress >= 1f;
     }
 }

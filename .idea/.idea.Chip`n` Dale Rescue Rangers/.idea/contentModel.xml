@@ -11,8 +11,10 @@
           <e p="Boss.cs" t="Include" />
           <e p="CameraSize.cs" t="Include" />
           <e p="CustomCollider.cs" t="Include" />
+          <e p="EndScreen.cs" t="Include" />
           <e p="Enemy.cs" t="Include" />
           <e p="EnemySpawner.cs" t="Include" />
+          <e p="Game.cs" t="Include" />
           <e p="LifeCounter.cs" t="Include" />
           <e p="Phase.cs" t="Include" />
           <e p="Player.cs" t="Include" />
