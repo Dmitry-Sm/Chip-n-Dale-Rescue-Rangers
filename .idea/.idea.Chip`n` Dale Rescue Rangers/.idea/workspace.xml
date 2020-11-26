@@ -10,25 +10,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecc5d36-6c85-4279-a8c6-67ff617f36c3" name="Default Changelist" comment="player damage fix">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Sounds.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Sounds.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Boss.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Boss.mp3.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Damage.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Damage.mp3.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Death.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Death.mp3.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Win.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Win.mp3.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chip`n` Dale Rescue Rangers/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chip`n` Dale Rescue Rangers/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chip`n` Dale Rescue Rangers/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chip`n` Dale Rescue Rangers/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plan.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plan.md.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player.cs" afterDir="false" />
-    </list>
+    <list default="true" id="5ecc5d36-6c85-4279-a8c6-67ff617f36c3" name="Default Changelist" comment="add sounds" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,6 +31,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Game.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Phase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Boss.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Ball.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemy.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CustomCollider.cs" root0="FORCE_HIGHLIGHTING" />
@@ -70,13 +53,13 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/CameraSize.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Progress.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Boss.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EndScreen.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Ball.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Sounds.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Game.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Boss.cs" />
       </list>
     </option>
   </component>
@@ -130,7 +113,7 @@
       <workItem from="1606302803188" duration="5856000" />
       <workItem from="1606313759389" duration="19716000" />
       <workItem from="1606349761251" duration="8559000" />
-      <workItem from="1606397253037" duration="7719000" />
+      <workItem from="1606397253037" duration="8035000" />
     </task>
     <task id="LOCAL-00001" summary="enemy spawner">
       <created>1606236123161</created>
@@ -202,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606404137282</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="add sounds">
+      <created>1606406619747</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1606406619747</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
@@ -232,7 +222,8 @@
     <MESSAGE value="dpad" />
     <MESSAGE value="fix" />
     <MESSAGE value="player damage fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="player damage fix" />
+    <MESSAGE value="add sounds" />
+    <option name="LAST_COMMIT_MESSAGE" value="add sounds" />
   </component>
   <component name="WindowStateProjectService">
     <state width="417" height="464" key="DebuggerActiveHint" timestamp="1606397840371">
