@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
         {
             SetDamage();
         }
-        if (ball.fly && Input.GetKeyDown(KeyCode.LeftControl) && 
+        if (ball.fly && Input.GetButtonDown("Fire1") && 
             _ballCathcTime.IsComplete() &&
             RectsCollided(playerRect, ball.catchCollider.GetRect()))
         {
@@ -155,13 +155,13 @@ public class Player : MonoBehaviour
 
         if (_controlLockProgress.IsComplete())
         {
-            if (!_sit && Input.GetKeyDown(KeyCode.LeftControl))
+            if (!_sit && Input.GetButtonDown("Fire1"))
             {
                 if (_ball)
                 {
                     _ball = false;
                     _ballCathcTime.Start();
-                    if (Input.GetKey(KeyCode.W))
+                    if (Input.GetAxis("DPad Y") > 0.1f)
                     {
                         _throwUp = true;
                     }
@@ -181,17 +181,17 @@ public class Player : MonoBehaviour
                     }
                 }
             }
-            if (_ground && Input.GetKeyDown(KeyCode.Space))
+            if (_ground && Input.GetButtonDown("Jump"))
             {
                 _jump = true;
             }
 
-            if (_ground && !_ball && Input.GetKey(KeyCode.S))
+            if (_ground && !_ball && Input.GetAxis("DPad Y") < -0.1f)
             {
                 _sit = true;
             }
         
-            if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
+            if (Input.GetAxis("DPad X") < -0.1f || Input.GetAxis("DPad X") > 0.1f)
             {
                 if (!_sit)
                 {
@@ -201,7 +201,7 @@ public class Player : MonoBehaviour
                 {
                     _run = true;
                 }
-                if (Input.GetKey(KeyCode.A))
+                if (Input.GetAxis("DPad X") < -0.1f)
                 {
                     _direction = -1;
                 }
@@ -210,7 +210,7 @@ public class Player : MonoBehaviour
                     _direction = 1;
                 }
             }
-            if (!_ground && Input.GetKey(KeyCode.Space))
+            if (!_ground && Input.GetButton("Jump"))
             {
                 _jumpPress = true;
             }
@@ -239,10 +239,6 @@ public class Player : MonoBehaviour
         if (_controlLockProgress.IsComplete())
         {
             CheckCollisions();
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
         }
 
         _renderer.flipX = _direction == -1;
