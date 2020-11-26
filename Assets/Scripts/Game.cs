@@ -7,6 +7,7 @@ public class Game : MonoBehaviour
 {
     public bool active = true;
     public UI UI;
+    public Sounds Sounds;
     public Progress endScreenDelay = new Progress();
 
     private bool _win = false;
@@ -17,6 +18,8 @@ public class Game : MonoBehaviour
         endScreenDelay.Start();
         active = false;
         _win = true;
+        Sounds.win.Play();
+        Sounds.theme.Pause();
     }
 
     public void Loose()
@@ -24,6 +27,8 @@ public class Game : MonoBehaviour
         endScreenDelay.Start();
         active = false;
         _loose = true;
+        Sounds.loose.Play();
+        Sounds.theme.Pause();
     }
     
     

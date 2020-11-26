@@ -66,6 +66,8 @@ public class Boss : MonoBehaviour
         {
             nextPhase = 2;
         }
+        
+        game.Sounds.damage.Play();
         _damageDelay.Start();
         _animator.SetBool("Damage", true);
     }

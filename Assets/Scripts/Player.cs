@@ -109,6 +109,7 @@ public class Player : MonoBehaviour
     private void SetDamage()
     {
         _damage = true;
+        // game.Sounds.damage.Play();
         _controlLockProgress.Start();
         _saveTimeProgress.Start();
         _animator.SetBool("Damage", _damage);
