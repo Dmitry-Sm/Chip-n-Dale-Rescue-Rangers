@@ -37,7 +37,6 @@ public class Game : MonoBehaviour
         if (endScreenDelay.IsComplete())
         {
             endScreenDelay.progress = 0;
-            Debug.Log("End screen");
             if (_win)
             {
                 UI.EndScreen.gameObject.SetActive(true);

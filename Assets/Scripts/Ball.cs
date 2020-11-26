@@ -76,7 +76,7 @@ public class Ball : MonoBehaviour
                 if (_boundCount++ < 2)
                 {
                     _velocity.y *= -0.12f;
-                    // ground = true;
+                    ground = true;
                     fly = false;
                     transform.position += Mathf.Sign(_velocity.y) * Math.Min(flySpeed, Mathf.Abs(_velocity.y)) *
                                           Time.deltaTime * Vector3.up;

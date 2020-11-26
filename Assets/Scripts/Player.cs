@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     public Game game;
 
     private Progress _controlLockProgress = new Progress();
+    private Progress _saveTimeProgress = new Progress();
     private Progress _ballCathcTime = new Progress();
     private SpriteRenderer _renderer;
     private Animator _animator;
@@ -54,8 +55,11 @@ public class Player : MonoBehaviour
         _renderer = sprite.GetComponent<SpriteRenderer>();
         _controlLockProgress.duration = 1f;
         _controlLockProgress.progress = 1f;
+        _saveTimeProgress.duration = 1.2f;
+        _saveTimeProgress.progress = 1f;
         _ballCathcTime.duration = 0.5f;
         UI.LifeCounter.SetHeartsNum(_lifes);
+        _death = false;
     }
 
     private void CheckCollisions()
@@ -65,7 +69,8 @@ public class Player : MonoBehaviour
         var enemies = FindObjectsOfType<Enemy>();
         foreach (Enemy enemy in enemies)
         {
-            if (RectsCollided(playerRect, enemy.collider.GetRect()))
+            Rect r2 = enemy.collider.GetRect();
+            if (RectsCollided(playerRect, r2))
             {
                 SetDamage();
             }
@@ -97,6 +102,7 @@ public class Player : MonoBehaviour
     {
         _ballHit = true;
         _controlLockProgress.Start();
+        _saveTimeProgress.Start();
         _animator.SetBool("Ball Hit", _ballHit);
     }
     
@@ -104,6 +110,7 @@ public class Player : MonoBehaviour
     {
         _damage = true;
         _controlLockProgress.Start();
+        _saveTimeProgress.Start();
         _animator.SetBool("Damage", _damage);
         _velocity.x = -damageVelocity.x * _direction;
         _velocity.y = damageVelocity.y;
@@ -111,6 +118,7 @@ public class Player : MonoBehaviour
         UI.LifeCounter.SetHeartsNum(Mathf.Max(0, --_lifes));
         if (_lifes <= 0)
         {
+            _death = true;
             game.Loose();
         }
     }
@@ -128,9 +136,9 @@ public class Player : MonoBehaviour
         float ballX = ball.transform.position.x;
         float x = transform.position.x;
 
-        if (ball.ground && Mathf.Abs(ballX - x) < ball.topWidth && _velocity.y <= 0.1f)
+        if (ball.ground && Mathf.Abs(ballX - x) < ball.topWidth && _velocity.y <= 0.0f)
         {
-            _ground = transform.position.y <= sceneBorders.y + ball.width;
+            _ground = transform.position.y <= sceneBorders.y + ball.width + 0.001f;
             _onBall = _ground;
         }
         else
@@ -140,7 +148,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void PlayerInput()
+    private void SetDefaultStates()
     {
         _jump = false;
         _run = false;
@@ -152,70 +160,73 @@ public class Player : MonoBehaviour
         _catch = false;
         _damage = false;
         _ballHit = false;
+    }
 
-        if (_controlLockProgress.IsComplete())
+    private void PlayerInput()
+    {
+        if (!_sit && Input.GetButtonDown("Fire1"))
         {
-            if (!_sit && Input.GetButtonDown("Fire1"))
+            if (_ball)
             {
-                if (_ball)
+                _ball = false;
+                _ballCathcTime.Start();
+                if (Input.GetAxis("Vertical") > 0.1f)
                 {
-                    _ball = false;
-                    _ballCathcTime.Start();
-                    if (Input.GetAxis("Vertical") > 0.1f)
-                    {
-                        _throwUp = true;
-                    }
-                    else
-                    {
-                        _throwFront = true;
-                    }
+                    _throwUp = true;
                 }
                 else
                 {
-                    float ballX = ball.transform.position.x;
-                    float x = transform.position.x;
-                    if (ball.ground && _ground && !_onBall && Mathf.Abs(ballX - x) - ball.width < 0.01f)
-                    {
-                        ball.Grab();
-                        _ball = true;
-                    }
+                    _throwFront = true;
                 }
             }
-            if (_ground && Input.GetButtonDown("Jump"))
+            else
             {
-                _jump = true;
-            }
-
-            if (_ground && !_ball && Input.GetAxis("Vertical") < -0.1f)
-            {
-                _sit = true;
-            }
-        
-            if (Input.GetAxis("Horizontal") < -0.1f || Input.GetAxis("Horizontal") > 0.1f)
-            {
-                if (!_sit)
+                float ballX = ball.transform.position.x;
+                float x = transform.position.x;
+                if (ball.ground && _ground && !_onBall && Mathf.Abs(ballX - x) - ball.width < 0.01f)
                 {
-                    _move = true;
+                    ball.Grab();
+                    _ball = true;
                 }
-                if (_ground)
-                {
-                    _run = true;
-                }
-                if (Input.GetAxis("Horizontal") < -0.1f)
-                {
-                    _direction = -1;
-                }
-                else
-                {
-                    _direction = 1;
-                }
-            }
-            if (!_ground && Input.GetButton("Jump"))
-            {
-                _jumpPress = true;
             }
         }
+        if (_ground && Input.GetButtonDown("Jump"))
+        {
+            _jump = true;
+        }
 
+        if (_ground && !_ball && Input.GetAxis("Vertical") < -0.1f)
+        {
+            _sit = true;
+        }
+    
+        if (Input.GetAxis("Horizontal") < -0.1f || Input.GetAxis("Horizontal") > 0.1f)
+        {
+            if (!_sit)
+            {
+                _move = true;
+            }
+            if (_ground)
+            {
+                _run = true;
+            }
+            if (Input.GetAxis("Horizontal") < -0.1f)
+            {
+                _direction = -1;
+            }
+            else
+            {
+                _direction = 1;
+            }
+        }
+        if (!_ground && Input.GetButton("Jump"))
+        {
+            _jumpPress = true;
+        }
+    }
+
+    private void SyncAnimations()
+    {
         _animator.SetBool("Ball Hit", _ballHit);
         _animator.SetBool("Damage", _damage);
         _animator.SetBool("Catch", _catch);
@@ -226,22 +237,16 @@ public class Player : MonoBehaviour
         _animator.SetBool("Throw Front", _throwFront);
         _animator.SetBool("Throw Up", _throwUp);
     }
-
-    private void Update()
+    
+    private void DeathAnimation()
     {
-        if (!game.active)
-        {
-            return;
-        }
-        
-        CheckGround();
-        PlayerInput();
-        if (_controlLockProgress.IsComplete())
-        {
-            CheckCollisions();
-        }
+        _velocity.y -= gravity * Time.deltaTime;
+        _velocity *= 0.9f;
+        transform.position += _velocity * Time.deltaTime;
+    }
 
-        _renderer.flipX = _direction == -1;
+    private void UpdateVelocity()
+    {
         if (_jump)
         {
             _velocity.y = jumpVelocity;
@@ -278,20 +283,14 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        
-        transform.position += _velocity * Time.deltaTime;
+    }
+    private void UpdatePosition()
+    {
+        Vector3 position = transform.position + _velocity * Time.deltaTime;
 
-        if (_throwUp)
-        {
-            ball.ThrowUp();
-        }
-        if (_throwFront)
-        {
-            ball.ThrowFront(_direction);
-        }
         float ballX = ball.transform.position.x;
-        float x = transform.position.x;
-        float y = transform.position.y;
+        float x = position.x;
+        float y = position.y;
         if (_ground && ball.ground && !_onBall)
         {
             if (x < ballX)
@@ -305,10 +304,10 @@ public class Player : MonoBehaviour
         }
         else
         {
-            x = Mathf.Clamp(transform.position.x, sceneBorders.xMin, sceneBorders.xMax);
+            x = Mathf.Clamp(x, sceneBorders.xMin, sceneBorders.xMax);
         }
         
-        if (_onBall)
+        if (ball.ground && Mathf.Abs(ballX - x) < ball.topWidth)
         {
             y = Mathf.Max(sceneBorders.y + ball.width, y);
         }
@@ -320,11 +319,51 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(
             x, 
             y,
-            transform.position.z);
+            position.z);
+    }
+    
+    private void Update()
+    {
+        if (_death)
+        {
+            DeathAnimation();
+        }
+        if (!game.active)
+        {
+            return;
+        }
         
+        CheckGround();
+        SetDefaultStates();
+
+        if (_controlLockProgress.IsComplete())
+        {
+            PlayerInput();
+        }
+
+        SyncAnimations();
+        
+        _renderer.flipX = _direction == -1;
+
+        UpdateVelocity();
+        UpdatePosition();
+
+        if (_throwUp)
+        {
+            ball.ThrowUp();
+        }
+        if (_throwFront)
+        {
+            ball.ThrowFront(_direction);
+        }
         if (_ball)
         {
             ball.transform.position += (ballPlace.transform.position - ball.transform.position) * 0.8f;
+        }
+
+        if (_saveTimeProgress.IsComplete())
+        {
+            CheckCollisions();
         }
     }
 }
