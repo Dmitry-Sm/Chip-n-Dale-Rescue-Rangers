@@ -9,13 +9,14 @@ public class Enemy : MonoBehaviour
     public Rect sceneBorders;
     public new CustomCollider collider;
     public SpriteRenderer spriteRenderer;
-
+    public Vector2 randomRange;
+    
     private Vector3 _velocity;
     private bool _fly = true;
 
     private void Start()
     {
-        _velocity = new Vector3(Random.value * 0.002f - 0.001f, Random.value * 0.002f);
+        _velocity = new Vector3((Random.value - 0.5f) * randomRange.x, Random.value * randomRange.y);
         spriteRenderer.flipX = direction == -1;
     }
 

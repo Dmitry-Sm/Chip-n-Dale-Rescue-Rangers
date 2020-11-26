@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     private Vector3 _velocity;
     private int _direction = 1;
     
-    private bool _onBall;
+    public bool _onBall;
     private bool _ball;
     private bool _ground;
     private bool _sit;
@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
             _ballCathcTime.IsComplete() &&
             RectsCollided(playerRect, ball.catchCollider.GetRect()))
         {
-            CathcBall();
+            CatchBall();
         }
         if (ball.fly && !_ball && RectsCollided(playerRect, ball.collider.GetRect()))
         {
@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void CathcBall()
+    private void CatchBall()
     {
         _ball = true;
         ball.Grab();
@@ -128,7 +128,7 @@ public class Player : MonoBehaviour
         float ballX = ball.transform.position.x;
         float x = transform.position.x;
 
-        if (!ball.fly && Mathf.Abs(ballX - x) < ball.topWidth && _velocity.y <= 0)
+        if (ball.ground && Mathf.Abs(ballX - x) < ball.topWidth && _velocity.y <= 0.1f)
         {
             _ground = transform.position.y <= sceneBorders.y + ball.width;
             _onBall = _ground;
@@ -161,7 +161,7 @@ public class Player : MonoBehaviour
                 {
                     _ball = false;
                     _ballCathcTime.Start();
-                    if (Input.GetAxis("DPad Y") > 0.1f)
+                    if (Input.GetAxis("Vertical") > 0.1f)
                     {
                         _throwUp = true;
                     }
@@ -174,7 +174,7 @@ public class Player : MonoBehaviour
                 {
                     float ballX = ball.transform.position.x;
                     float x = transform.position.x;
-                    if (ball.ground && Mathf.Abs(ballX - x) - ball.width < 0.01f)
+                    if (ball.ground && _ground && !_onBall && Mathf.Abs(ballX - x) - ball.width < 0.01f)
                     {
                         ball.Grab();
                         _ball = true;
@@ -186,12 +186,12 @@ public class Player : MonoBehaviour
                 _jump = true;
             }
 
-            if (_ground && !_ball && Input.GetAxis("DPad Y") < -0.1f)
+            if (_ground && !_ball && Input.GetAxis("Vertical") < -0.1f)
             {
                 _sit = true;
             }
         
-            if (Input.GetAxis("DPad X") < -0.1f || Input.GetAxis("DPad X") > 0.1f)
+            if (Input.GetAxis("Horizontal") < -0.1f || Input.GetAxis("Horizontal") > 0.1f)
             {
                 if (!_sit)
                 {
@@ -201,7 +201,7 @@ public class Player : MonoBehaviour
                 {
                     _run = true;
                 }
-                if (Input.GetAxis("DPad X") < -0.1f)
+                if (Input.GetAxis("Horizontal") < -0.1f)
                 {
                     _direction = -1;
                 }
@@ -308,7 +308,7 @@ public class Player : MonoBehaviour
             x = Mathf.Clamp(transform.position.x, sceneBorders.xMin, sceneBorders.xMax);
         }
         
-        if (!_ball && !ball.fly && Mathf.Abs(ballX - x) < ball.topWidth)
+        if (_onBall)
         {
             y = Mathf.Max(sceneBorders.y + ball.width, y);
         }

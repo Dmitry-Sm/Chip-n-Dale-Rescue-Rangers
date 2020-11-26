@@ -599,8 +599,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1475958568}
   speed: 0.4
-  gravity: 12
-  jumpVelocity: 1.6
+  gravity: 11
+  jumpVelocity: 1.5
   jumpAdditiveVelocity: 6
   sceneBorders:
     serializedVersion: 2
@@ -615,6 +615,7 @@ MonoBehaviour:
   boss: {fileID: 1702106619}
   UI: {fileID: 1650261829}
   game: {fileID: 1233117959}
+  _onBall: 0
 --- !u!4 &619936172 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3384944948627933555, guid: 317d5ce34f2ef9a46a4fcd7cefb8fc09,
@@ -1899,7 +1900,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1702106618
 Transform:
   m_ObjectHideFlags: 0
@@ -2164,8 +2165,8 @@ MonoBehaviour:
     width: 0.9
     height: 1
   gravity: 4
-  throwSpeed: 1.8
-  flySpeed: 0.8
+  throwSpeed: 2.8
+  flySpeed: 1
   collider: {fileID: 619936173}
   catchCollider: {fileID: 1352284623}
   throwFrontOffset: {x: 0.07, y: -0.02, z: 0}

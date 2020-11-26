@@ -56,6 +56,7 @@ MonoBehaviour:
     height: 1
   collider: {fileID: 3603993557404814667}
   spriteRenderer: {fileID: 6943257353119415869}
+  randomRange: {x: 0, y: 0.005}
 --- !u!1 &6943257353119415856
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +179,7 @@ PrefabInstance:
     - target: {fileID: 3384944948627933555, guid: 317d5ce34f2ef9a46a4fcd7cefb8fc09,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.03
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 3384944948627933555, guid: 317d5ce34f2ef9a46a4fcd7cefb8fc09,
         type: 3}
@@ -228,7 +229,7 @@ PrefabInstance:
     - target: {fileID: 3384944948627933555, guid: 317d5ce34f2ef9a46a4fcd7cefb8fc09,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.06
+      value: 0.04
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 317d5ce34f2ef9a46a4fcd7cefb8fc09, type: 3}

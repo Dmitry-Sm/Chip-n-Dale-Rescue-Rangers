@@ -7,7 +7,7 @@ public class EndScreen : MonoBehaviour
 {
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetButtonDown("Submit"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }

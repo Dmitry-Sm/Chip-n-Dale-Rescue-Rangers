@@ -48,6 +48,7 @@ public class Ball : MonoBehaviour
     public void Grab()
     {
         ground = false;
+        fly = false;
         _throwFront = false;
         _throwUp = false;
     }
@@ -67,16 +68,18 @@ public class Ball : MonoBehaviour
             if (transform.position.y > sceneBorders.yMin)
             {
                 _velocity += gravity * Time.deltaTime * Vector3.down;
-                transform.position += _velocity * Time.deltaTime;
+                transform.position += Mathf.Sign(_velocity.y) * Math.Min(flySpeed, Mathf.Abs(_velocity.y)) *
+                                      Time.deltaTime * Vector3.up;
             }
             else
             {
                 if (_boundCount++ < 2)
                 {
-                    _velocity.y *= -0.3f;
+                    _velocity.y *= -0.12f;
                     // ground = true;
                     fly = false;
-                    transform.position += Math.Min(flySpeed, _velocity.y) * Time.deltaTime * Vector3.up;
+                    transform.position += Mathf.Sign(_velocity.y) * Math.Min(flySpeed, Mathf.Abs(_velocity.y)) *
+                                          Time.deltaTime * Vector3.up;
                 }
                 else
                 {
